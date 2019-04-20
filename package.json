@@ -3,8 +3,13 @@
   "version": "0.0.5",
   "description": "my first node website",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wideo21/node.smple.chat.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+    ,"start":"node index.js"
   },
   "author": "gondr",
   "license": "ISC",

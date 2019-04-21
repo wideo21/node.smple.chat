@@ -2,6 +2,7 @@
 //엔터키시 전송될 수 있도록 할것.
 //개인별로 채팅글자 색상 
 //채팅냉여 스크롤
+
 let express = require('express');
 let http = require('http');
 let path = require('path');
@@ -29,14 +30,10 @@ io.on('connection', (socket) =>{
     let idx = Math.floor(Math.random() * nickList.length);
     let randomNick = nickList[idx];
     socket.nickname= randomNick;
-  
-    let r =Math.floor(Math.random()*255);
-    let g =Math.floor(Math.random()*255);
-    let b =Math.floor(Math.random()*255);
-
-    let rgbcolor = "rgb("+r+","+g+","+b+");";
-    console.log(rgbcolor);
     
+         
+    io.emit('color');
+  
     
     socket.on('change', (data)=>{
         let name = data.name;

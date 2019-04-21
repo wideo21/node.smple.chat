@@ -39,7 +39,7 @@
             overflow: auto;
          
         }
-     
+       
 
         
         .name{
@@ -98,6 +98,9 @@
         </div>
 
     <script>
+        
+            
+               
         let socket = io();
         let msgInput = document.querySelector("#msg");
         let btn = document.querySelector("#btnSend");
@@ -105,7 +108,10 @@
 
         let changeBtn = document.querySelector("#btnChange");
         let nickInput = document.querySelector("#nickname");
-      
+       
+        
+    
+           
         nickInput.addEventListener("keydown",(e)=>{
             if(e.keyCode==13){
             let nick = nickInput.value;
@@ -117,7 +123,7 @@
         msgInput.addEventListener("keydown",(e)=>{
             if(e.keyCode==13){
             let msg = msgInput.value;
-            
+           
             socket.emit('gondr', {text:msg});
             }
         });
@@ -142,7 +148,14 @@
             chatList.appendChild(msgDiv);
           
         });
-        
+        socket.on('color',()=>{
+            let r =Math.floor(Math.random()*255);
+    let g =Math.floor(Math.random()*255);
+    let b =Math.floor(Math.random()*255);
+    let rgbcolor = "rgb("+r+","+g+","+b+")";
+            chatList.style.color = rgbcolor;
+            console.log("컬러설정");
+        });
         
     </script>
 </body>

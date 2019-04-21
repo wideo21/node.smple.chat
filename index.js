@@ -28,12 +28,20 @@ io.on('connection', (socket) =>{
     console.log("클라이언트 접속");
     let idx = Math.floor(Math.random() * nickList.length);
     let randomNick = nickList[idx];
-    socket.nickname = randomNick;
+    socket.nickname= randomNick;
+  
+    let r =Math.floor(Math.random()*255);
+    let g =Math.floor(Math.random()*255);
+    let b =Math.floor(Math.random()*255);
 
+    let rgbcolor = "rgb("+r+","+g+","+b+");";
+    console.log(rgbcolor);
+    
+    
     socket.on('change', (data)=>{
         let name = data.name;
+        io.emit('server-msg',{text:`${socket.nickname}님이${name}으로 변경하였습니다 `});
         socket.nickname = name ;
-        
     });
 
     socket.on('gondr', (data)=>{
@@ -44,6 +52,7 @@ io.on('connection', (socket) =>{
     socket.on('disconnect', ()=>{
         console.log("유저 연결 종료");
     });
+    
 });
 
 server.listen(10500, ()=>{
